@@ -1,0 +1,238 @@
+{% extends "templates/login.html" %}
+
+
+{% block login %}
+
+<div class="row">
+
+        <div class="col-3"> <!-- login cell -->
+        <div id="login-main" class="container">
+        <form action="/hub/login?next=" method="post" role="form">
+          <div class="auth-form-header">
+            Sign in
+          </div>
+          <div class='auth-form-body'>
+        
+            <p id='insecure-login-warning' class='hidden'>
+            Warning: JupyterHub seems to be served over an unsecured HTTP connection.
+            We strongly recommend enabling HTTPS for JupyterHub.
+            </p>
+        
+            
+            <label for="username_input">Username:</label>
+            <input
+              id="username_input"
+              type="username"
+              autocapitalize="off"
+              autocorrect="off"
+              class="form-control"
+              name="username"
+              val=""
+              tabindex="1"
+              autofocus="autofocus"
+            />
+            <label for='password_input'>Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password_input"
+              tabindex="2"
+            />
+        
+            <input
+              type="submit"
+              id="login_submit"
+              class='btn btn-jupyter'
+              value='Sign In'
+              tabindex="3"
+            />
+          </div>
+        </form>
+    </div>
+        </div> <!-- cell -->
+        
+        <div class="col-9">
+        <div id="content">
+          <H2>The Need for New Computing Capabilities</H2>
+        
+          <p>Over the past five decades, the integrated circuit computing paradigm has powered many technological breakthroughs. However, the computing power we’re able to fit into computer chips is beginning to reach a limit, and the hardest problems in fields like software verification and validation (VV), or machine learning and artificial intelligence (ML and AI), can’t be solved by existing technology.</p>
+
+          <p>The challenging software engineering problems these fields face are combinatorial optimization problems. For many combinatorial optimization problems, finding the exact optimal solution is non-deterministic polynomial hard (NP-hard), which means that each of these problems could take billions of years to solve using classical computing paradigms.</p>
+                
+          <p>Some examples of these problems involve complicated software components of aircraft flight controls. For example, Lockheed Martin recently published code that is used to control an aircraft safety mechanism. The purpose of the code is to automate evasive maneuvers if the aircraft is in danger. However, because of the complexity of the code and the maneuvers it controls, classical computers are unable to verify and validate that the code is safe. To solve these problems in mission-critical time for the sake of safety and mission success, we need a new paradigm in optimization algorithms and computational capabilities.</p>
+        <h2>
+                Achieving Quantum Advantage
+        </h2>
+        <p>At the SEI, we are investigating whether quantum algorithms and computers can serve as this next paradigm for optimization in applications like software VV. To do so, we are working toward quantum advantage: a clear demonstration of a quantum computer solving a problem of practical interest faster than a classical computer.</p>
+                
+                <p>We are investigating near-term optimization algorithms that can run effectively on NISQ QPUs, like Variational Quantum Eigensolver (VQE) and Quantum Approximation Optimization Algorithm (QAOA). Currently, we are focusing on:</p>
+                
+                <ul>
+                        <li>benchmarking Variational Quantum Optimization techniques, such as QAOA, and their ability to tolerate NISQ-era QPUs</li>
+                        <li>improving circuit generation for NISQ-era QPUs</li>
+
+                        <li>analyzing the hierarchy of the problems of interest and identifying which parts can be mapped effectively to QPUs</li>
+
+                        <li>addressing the challenges of scaling up to O(102-103) qubits as well as predicting and projecting quantum advantage</li>
+
+                        <li>developing software tools to help data scientists and engineers use quantum computers</li>
+                        <li>We use JupyterHub to work with our collaborators. To get credentials for JupiterHub and connect with our work, contact us.</li>
+</ul>
+                
+        </div>
+          <H3>Useful Links</H3>
+        
+          <ul>
+            <li><a href="/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb">Jupyter Notebook Users Manual</a></li>
+          </ul>
+        
+
+          
+          
+        
+          <H3>Administration</H3>
+        
+          <ul>
+            <li><a href="/services/accounts">Add new users</a></li>
+          </ul>
+        
+        
+          
+        </div>
+        
+        </div>
+
+
+<footer class='navbar-default'>
+    <p>Access to the Quantum Cluster via Juyter is currently in Beta, you can
+    request an account by open a ticket with the Research It team</p>
+</footer>
+
+{% endblock %}
+
+{% block site %}
+
+{{ super() }}
+{% endblock %}
+
+{% block stylesheet %}
+{{ super() }}
+<style>
+.branding img {
+    display: block; 
+    width: 350px;
+    /* top right bottom left */
+    margin: 0 auto 0 auto;
+}
+
+
+footer {
+    border-top: 1px solid silver;
+    padding: 10px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+footer p{
+    margin: 0 auto 0 auto;
+    text-align: center;
+}
+
+#login-main {
+    height: 80vh;
+    display:block;
+}
+
+#login-main form {
+    vertical-align: top;
+    margin: 0;
+}
+
+#login-main .auth-form-header {
+    color: white;
+    background: rgb(219, 170, 0);
+    border: 1px solid;
+    border-color: rgb(0, 124, 186);
+}
+
+#insecure-login-warning {
+    color: black;
+}
+
+.btn-jupyter.active, .btn-jupyter:active, .open>.dropdown-toggle.btn-jupyter {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #a88400;
+    border-color: #a88400;
+    outline-color: #a88400;
+}
+
+#login-main .form-control:focus, #login-main input[type=submit]:focus {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(219, 170, 0);
+    border-color: rgb(219, 170, 0);
+    outline-color: rgb(219, 170, 0);
+}
+
+.btn-jupyter {
+    color: #fff;
+    background-color: rgb(219, 170, 0);
+    border-color: rgb(219, 170, 0);
+}
+
+* {
+    box-sizing: border-box;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%; float: left;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.header {
+    background-color: #F37524;
+    color: #ffffff;
+    padding: 15px;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: #33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+
+.content {
+    vertical-align: top;
+    padding: 10px;
+    margin: 2px
+}
+</style>
+
+
+{% endblock %}
